@@ -1,0 +1,33 @@
+<div *appUnless="false">
+  Now false
+</div>
+
+<a routerLink="/url"></a>
+<p *ngIf="false">Now true</p>
+
+<app-first-component [someData]="inputValue">
+  <p #templateRef>first component content</p>
+  <span #templateRef>Span content</span>
+</app-first-component>
+
+<div>
+  <p>Some content in paragraph
+    <span id="span" *ngIf="hideParagraph">Hidden content</span>
+  </p>
+</div>
+
+<ul>
+  <li *ngFor="let item of items">{{item}}</li>
+</ul>
+
+<ul>
+  <li *ngFor="let item of obje; trackBy: trackByFn">{{item.name}}</li>
+</ul>
+
+
+
+{{inputValue}}
+
+<input type="text" (blur)="inputValue=$event">
+
+<button (click)="inputValue=$event">Click here</button>
