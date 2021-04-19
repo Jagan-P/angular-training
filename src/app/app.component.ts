@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Input, QueryList, ViewChild
 import { Component, Directive, TemplateRef, ViewContainerRef } from '@angular/core';
 import { FirstComponentComponent } from './first-component/first-component.component';
 
+declare var $:any;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -29,6 +31,8 @@ export class AppComponent {
   ngOnInit() {
     
     setTimeout(() => {
+      
+
       this.hideParagraph = true;
       
       // this.items[2]=10;
