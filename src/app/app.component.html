@@ -33,7 +33,19 @@
 
 <input type="text" (blur)="inputValue=$event">
 
+<br>
+Pipes - {{inputValue | uppercase | lowercase}}
+
+{{today}}
+<br>
+Today {{today | date | uppercase }}
+<br>
+{{inputValue}}
+<br>
 <button (click)="inputValue=$event">Click here</button>
+
+
+ReplaceAWith0 - {{inputValue | replaceAWithCustomString:'p'}}
 
 <table appDataTables class="display" style="width:100%">
   <thead>
@@ -515,7 +527,6 @@
       </tr>
   </tfoot>
 </table>
-
 
 
 <table appDataTables class="display" style="width:100%">

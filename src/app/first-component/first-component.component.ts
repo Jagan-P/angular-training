@@ -1,4 +1,5 @@
 import { Component, ContentChild, ContentChildren, Input, OnInit, SimpleChange, ViewChild, ViewChildren } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Component({
   selector: 'app-first-component',
@@ -24,4 +25,13 @@ export class FirstComponentComponent implements OnInit {
     console.log("first component ngOnInit")
   }
 
+}
+
+
+@Pipe({name: 'replaceAWithCustomString'})
+export class ReplaceAWith0 implements PipeTransform {
+  transform(value: string, replaceWith: string): string {
+    console.log(value);
+    return value.replace("A",replaceWith);
+  }
 }

@@ -23,8 +23,9 @@ export class AppComponent {
     {id: 12, name: "two"}
   ]
 
-  inputValue = 'first';
+  inputValue = 'Afirst';
   hideParagraph = false;
+  today: any = '';
 
   constructor(private changeDetRef: ChangeDetectorRef) {}
 
