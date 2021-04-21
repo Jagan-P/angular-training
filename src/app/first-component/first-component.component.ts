@@ -35,3 +35,11 @@ export class ReplaceAWith0 implements PipeTransform {
     return value.replace("A",replaceWith);
   }
 }
+
+@Pipe({name: 'flyingHeroes', pure: false})
+export class FlyingHeroes implements PipeTransform {
+  transform(allHeroes: any[]) {
+    console.log("allHeroes",allHeroes);
+    return allHeroes.filter(hero => hero.canFly);
+  }
+}

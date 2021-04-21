@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent, UnlessDirective } from './app.component';
-import { FirstComponentComponent, ReplaceAWith0 } from './first-component/first-component.component';
+import { FirstComponentComponent, FlyingHeroes, ReplaceAWith0 } from './first-component/first-component.component';
 import { DataTablesDirective } from './data-tables.directive';
 import { BindingListenerDirective } from './binding-listener.directive';
 
@@ -14,7 +14,8 @@ import { BindingListenerDirective } from './binding-listener.directive';
     FirstComponentComponent,
     DataTablesDirective,
     BindingListenerDirective,
-    ReplaceAWith0
+    ReplaceAWith0,
+    FlyingHeroes
   ],
   imports: [
     BrowserModule,

@@ -47,6 +47,10 @@ Today {{today | date | uppercase }}
 
 ReplaceAWith0 - {{inputValue | replaceAWithCustomString:'p'}}
 
+<div *ngFor="let hero of (heroes | flyingHeroes)">
+    {{hero.name}}
+  </div>
+
 <table appDataTables class="display" style="width:100%">
   <thead>
       <tr>

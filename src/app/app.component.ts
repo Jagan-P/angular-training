@@ -1,8 +1,50 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Input, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Component, Directive, TemplateRef, ViewContainerRef } from '@angular/core';
 import { FirstComponentComponent } from './first-component/first-component.component';
 
 declare var $:any;
+
+
+/**
+ * An interface for items
+ */
+ interface IItems {
+  /* * Id of the item */
+  id: number,
+  name?: string
+}
+
+interface IData {
+  pincode: number;
+}
+
+interface IExtendedItems extends IItems, IData {
+  phone: number
+}
+
+abstract class Data {
+  address: string = "ABC";
+}
+
+abstract class Item {
+  latitude: number = 0;
+}
+
+class DEF extends Data {
+  address = "DEF";
+
+  constructor() {
+    super();
+
+    console.log("address",this.address);
+  }
+}
+
+class ABC implements IData, IItems {
+  phone = 0;
+  id: number = 0;
+  pincode: number = 0;  
+}
 
 @Component({
   selector: 'app-root',
@@ -10,11 +52,18 @@ declare var $:any;
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {
-  title = 'first-project';
+export class AppComponent implements OnInit {
+  title: string = 'first-project';
 
   @ViewChild("templateRef", {static: false}) appFirst: HTMLElement;
   // @ViewChildren("templateRef") viewChildren: QueryList<any>;
+
+  studentItem: IExtendedItems = {
+    id: 0,
+    // name: 'abc',
+    phone: 0,
+    pincode: 0
+  }
 
   items = [0,1,2];
   obje = [
@@ -26,8 +75,17 @@ export class AppComponent {
   inputValue = 'Afirst';
   hideParagraph = false;
   today: any = '';
+  heroes: any[] = [
+    {name:"abc", canFly: false},
+    {name:"def", canFly: true},
+    {name:"ghi", canFly: false}
+  ];
+  data: any;
 
-  constructor(private changeDetRef: ChangeDetectorRef) {}
+  constructor(private changeDetRef: ChangeDetectorRef) {
+    this.data = new DEF();
+  }
+  
 
   ngOnInit() {
     
@@ -46,7 +104,9 @@ export class AppComponent {
       ]
       // this.items = [...this.items];
       // this.changeDetRef.markForCheck();
-
+      this.heroes.push({name: "yut", canFly: true});
+      // this.heroes = [{name: 'abc', canFly: true}];
+      this.heroes = [...this.heroes]
     }, 3000);
 
     setTimeout(() => {
