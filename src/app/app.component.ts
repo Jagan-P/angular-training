@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, ComponentFactoryResolver, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Component, Directive, TemplateRef, ViewContainerRef } from '@angular/core';
-import { FirstComponentComponent } from './first-component/first-component.component';
+import { AdDirective, FirstComponentComponent } from './first-component/first-component.component';
 
 declare var $:any;
 
@@ -58,6 +58,10 @@ export class AppComponent implements OnInit {
   @ViewChild("templateRef", {static: false}) appFirst: HTMLElement;
   // @ViewChildren("templateRef") viewChildren: QueryList<any>;
 
+  @ViewChild(AdDirective, {static: true}) adHost: AdDirective;
+  @ViewChild("templateAsArgument", {static: false}) templateAsArgument: TemplateRef<any>;
+  
+
   studentItem: IExtendedItems = {
     id: 0,
     // name: 'abc',
@@ -82,7 +86,10 @@ export class AppComponent implements OnInit {
   ];
   data: any;
 
-  constructor(private changeDetRef: ChangeDetectorRef) {
+  constructor(
+    private changeDetRef: ChangeDetectorRef,
+    private componentFactoryResolver: ComponentFactoryResolver
+    ) {
     this.data = new DEF();
   }
   
@@ -128,6 +135,13 @@ export class AppComponent implements OnInit {
 
   ngAfterViewInit() {
     console.log(this.appFirst)
+
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(FirstComponentComponent);
+
+    const viewContainerRef = this.adHost.viewContainerRef;
+    // viewContainerRef.clear();
+    const componentRef = viewContainerRef.createComponent<FirstComponentComponent>(componentFactory);
+
     // this.appFirst.nativeElement.style.color = "red";
     // console.log(this.viewChildren);
     // this.viewChildren.changes.subscribe((data)=>{

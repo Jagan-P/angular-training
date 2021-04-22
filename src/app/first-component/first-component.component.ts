@@ -1,5 +1,6 @@
-import { Component, ContentChild, ContentChildren, Input, OnInit, SimpleChange, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ContentChild, ContentChildren, Input, OnInit, SimpleChange, TemplateRef, ViewChild, ViewChildren } from '@angular/core';
 import { Pipe, PipeTransform } from '@angular/core';
+import { Directive, ViewContainerRef } from '@angular/core';
 
 @Component({
   selector: 'app-first-component',
@@ -9,6 +10,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FirstComponentComponent implements OnInit {
   @ViewChildren("templateRef") contentChild;
   @Input() someData = ''
+  @Input() templateAsArgument: TemplateRef<any>;
 
   constructor() { }
 
@@ -42,4 +44,11 @@ export class FlyingHeroes implements PipeTransform {
     console.log("allHeroes",allHeroes);
     return allHeroes.filter(hero => hero.canFly);
   }
+}
+
+@Directive({
+  selector: '[adHost]',
+})
+export class AdDirective {
+  constructor(public viewContainerRef: ViewContainerRef) { }
 }
