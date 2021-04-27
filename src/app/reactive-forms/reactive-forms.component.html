@@ -1,0 +1,15 @@
+<p>reactive-forms works!</p>
+<form [formGroup]="profileForm">
+  
+    <label>
+      First Name:
+      <input type="text" formControlName="firstName">
+    </label>
+  
+    <label>
+      Number:
+      <input type="number" formControlName="number">
+    </label>
+  
+    <button [disabled]="profileForm.invalid">Submit</button>
+  </form>

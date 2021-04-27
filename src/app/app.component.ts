@@ -136,11 +136,11 @@ export class AppComponent implements OnInit {
   ngAfterViewInit() {
     console.log(this.appFirst)
 
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(FirstComponentComponent);
+    // const componentFactory = this.componentFactoryResolver.resolveComponentFactory(FirstComponentComponent);
 
-    const viewContainerRef = this.adHost.viewContainerRef;
-    // viewContainerRef.clear();
-    const componentRef = viewContainerRef.createComponent<FirstComponentComponent>(componentFactory);
+    // const viewContainerRef = this.adHost.viewContainerRef;
+    // // viewContainerRef.clear();
+    // const componentRef = viewContainerRef.createComponent<FirstComponentComponent>(componentFactory);
 
     // this.appFirst.nativeElement.style.color = "red";
     // console.log(this.viewChildren);

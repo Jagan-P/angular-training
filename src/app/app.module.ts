@@ -6,6 +6,9 @@ import { AppComponent, UnlessDirective } from './app.component';
 import { AdDirective, FirstComponentComponent, FlyingHeroes, ReplaceAWith0 } from './first-component/first-component.component';
 import { DataTablesDirective } from './data-tables.directive';
 import { BindingListenerDirective } from './binding-listener.directive';
+import { TemplateDrivenFormsComponent } from './template-driven-forms/template-driven-forms.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
 
 @NgModule({
   declarations: [
@@ -16,11 +19,15 @@ import { BindingListenerDirective } from './binding-listener.directive';
     BindingListenerDirective,
     ReplaceAWith0,
     FlyingHeroes,
-    AdDirective
+    AdDirective,
+    TemplateDrivenFormsComponent,
+    ReactiveFormsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

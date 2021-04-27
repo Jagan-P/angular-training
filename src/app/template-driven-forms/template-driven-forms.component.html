@@ -1,0 +1,16 @@
+<p>template-driven-forms works!</p>
+<form #heroForm="ngForm">
+    <label for="name">Name-{{name}}</label>
+    <input type="text" class="form-control" id="name"
+       required minlength="4"
+       [(ngModel)]="name" name="name"
+      >
+
+    <label for="name">Number-{{number}}</label>
+    <input type="number" class="form-control" id="number"
+              required
+              [(ngModel)]="number" name="number"
+              >
+
+    <button [disabled]="!heroForm.valid">Submit</button>
+</form>
