@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Directive, OnInit } from '@angular/core';
+import { NG_VALIDATORS, Validator, AbstractControl, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-template-driven-forms',
@@ -15,4 +16,23 @@ export class TemplateDrivenFormsComponent implements OnInit {
   ngOnInit() {
   }
 
+}
+
+
+
+@Directive({
+  selector: '[appForbiddenName]',
+  providers: [{provide: NG_VALIDATORS, useExisting: ForbiddenValidatorDirective, multi: true}] 
+})
+export class ForbiddenValidatorDirective implements Validator {
+  // @Input('appForbiddenName') forbiddenName: string;
+
+  validate(control: AbstractControl): ValidationErrors | null {
+    console.log(control);
+    // return null;
+    if(control.value && control.value.indexOf("@")>-1) {
+      return null;
+    }
+    return {"name": "This name cannot be used"}
+  }
 }

@@ -2,7 +2,7 @@
 <form #heroForm="ngForm">
     <label for="name">Name-{{name}}</label>
     <input type="text" class="form-control" id="name"
-       required minlength="4"
+       required minlength="4" appForbiddenName
        [(ngModel)]="name" name="name"
       >
 

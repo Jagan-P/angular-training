@@ -4,6 +4,7 @@
     <label>
       First Name:
       <input type="text" formControlName="firstName">
+      <p *ngIf="profileForm.controls.firstName.errors?.name">{{profileForm.controls.firstName.errors.name}}</p>
     </label>
   
     <label>
