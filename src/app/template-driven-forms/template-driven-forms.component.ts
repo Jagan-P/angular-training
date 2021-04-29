@@ -14,6 +14,11 @@ export class TemplateDrivenFormsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log("first");
+    setTimeout(() => {
+      console.log("second");
+    }, 0);
+    console.log("third");
   }
 
 }
