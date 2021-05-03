@@ -1,6 +1,7 @@
-import { Component, ContentChild, ContentChildren, Input, OnInit, SimpleChange, TemplateRef, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ContentChild, ContentChildren, EventEmitter, Input, OnInit, Output, SimpleChange, TemplateRef, ViewChild, ViewChildren } from '@angular/core';
 import { Pipe, PipeTransform } from '@angular/core';
 import { Directive, ViewContainerRef } from '@angular/core';
+// import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-first-component',
@@ -11,6 +12,7 @@ export class FirstComponentComponent implements OnInit {
   @ViewChildren("templateRef") contentChild;
   @Input() someData = ''
   @Input() templateAsArgument: TemplateRef<any>;
+  @Output() dataToParent: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -25,6 +27,7 @@ export class FirstComponentComponent implements OnInit {
 
   ngOnInit() {
     console.log("first component ngOnInit")
+    this.dataToParent.emit("data from child");
   }
 
 }

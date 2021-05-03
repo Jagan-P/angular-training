@@ -9,6 +9,7 @@ import { BindingListenerDirective } from './binding-listener.directive';
 import { ForbiddenValidatorDirective, TemplateDrivenFormsComponent } from './template-driven-forms/template-driven-forms.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
+import { RxjsPlaygroundComponent } from './rxjs-playground/rxjs-playground.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.componen
     AdDirective,
     TemplateDrivenFormsComponent,
     ReactiveFormsComponent,
-    ForbiddenValidatorDirective
+    ForbiddenValidatorDirective,
+    RxjsPlaygroundComponent
   ],
   imports: [
     BrowserModule,

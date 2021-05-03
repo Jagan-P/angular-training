@@ -60,6 +60,9 @@ export class AppComponent implements OnInit {
 
   @ViewChild(AdDirective, {static: true}) adHost: AdDirective;
   @ViewChild("templateAsArgument", {static: false}) templateAsArgument: TemplateRef<any>;
+
+  @ViewChild("template", {static: true}) template: FirstComponentComponent;
+  
   
 
   studentItem: IExtendedItems = {
@@ -96,6 +99,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     
+    // this.template.dataToParent.subscribe((data)=>{
+    //   console.log(data);
+    // })
+
     setTimeout(() => {
       
 
@@ -122,6 +129,10 @@ export class AppComponent implements OnInit {
       
       // this.changeDetRef.markForCheck();
     }, 5000);
+  }
+
+  eventFromChild(dataFromChild) {
+    console.log(dataFromChild)
   }
 
   trackByFn(arg, arg2) {
