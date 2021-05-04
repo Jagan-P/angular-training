@@ -10,6 +10,8 @@ import { ForbiddenValidatorDirective, TemplateDrivenFormsComponent } from './tem
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
 import { RxjsPlaygroundComponent } from './rxjs-playground/rxjs-playground.component';
+import { HttpClientComponent } from './http-client/http-client.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,13 +26,15 @@ import { RxjsPlaygroundComponent } from './rxjs-playground/rxjs-playground.compo
     TemplateDrivenFormsComponent,
     ReactiveFormsComponent,
     ForbiddenValidatorDirective,
-    RxjsPlaygroundComponent
+    RxjsPlaygroundComponent,
+    HttpClientComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
