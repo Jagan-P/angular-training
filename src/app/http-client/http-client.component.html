@@ -1,12 +1,15 @@
 <p>http-client works!</p>
 <!-- {{jsonResponse | json}} -->
-<ul>
+<!-- <ul>
     <li *ngFor="let list of listD">{{list}}</li>
-</ul>
+</ul> -->
 <!-- <ul>
     <li *ngFor="let list of jsonResponse">{{list?.id}} - {{list?.title}}</li>
 </ul> -->
 
-<ul>
+<!-- <ul>
     <li *ngFor="let list of asyncData | async">{{list?.id}} - {{list?.title}}</li>
-</ul>
+</ul> -->
+
+<button (click)="httpService.incrementCount()">Increment http-client count</button>
+<button (click)="printCount()">Get http-client count</button>

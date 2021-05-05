@@ -4,7 +4,8 @@ import { HttpServiceService } from '../http-service.service';
 @Component({
   selector: 'app-http-client',
   templateUrl: './http-client.component.html',
-  styleUrls: ['./http-client.component.scss']
+  styleUrls: ['./http-client.component.scss'],
+  providers: [{ provide: HttpServiceService, useClass: HttpServiceService }]
 })
 export class HttpClientComponent implements OnInit {
   jsonResponse:any=[];
@@ -31,6 +32,10 @@ export class HttpClientComponent implements OnInit {
     // }).subscribe((data)=>{
     //   console.log(data);
     // })
+  }
+
+  printCount() {
+    console.log(this.httpService.returnCount());
   }
 
 }

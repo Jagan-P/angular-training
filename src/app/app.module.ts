@@ -12,6 +12,7 @@ import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.componen
 import { RxjsPlaygroundComponent } from './rxjs-playground/rxjs-playground.component';
 import { HttpClientComponent } from './http-client/http-client.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpServiceService } from './http-service.service';
 
 @NgModule({
   declarations: [

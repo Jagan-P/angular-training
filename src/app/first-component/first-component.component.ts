@@ -1,12 +1,28 @@
-import { Component, ContentChild, ContentChildren, EventEmitter, Input, OnInit, Output, SimpleChange, TemplateRef, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ContentChild, ContentChildren, EventEmitter, Inject, Input, OnInit, Output, SimpleChange, TemplateRef, ViewChild, ViewChildren } from '@angular/core';
 import { Pipe, PipeTransform } from '@angular/core';
 import { Directive, ViewContainerRef } from '@angular/core';
+import { HttpServiceService } from '../http-service.service';
 // import { EventEmitter } from 'events';
+
+import { InjectionToken } from '@angular/core';
+
+import {HERO_DI_CONFIG, SilentLogger} from './app.config'
+
+export const APP_CONFIG = new InjectionToken<any>('app.config');
+
+export const HTTP_SERVICE = new InjectionToken<any>('./http-service.service');
+
+
 
 @Component({
   selector: 'app-first-component',
   templateUrl: './first-component.component.html',
-  styleUrls: ['./first-component.component.scss']
+  styleUrls: ['./first-component.component.scss'],
+  // providers: [{ provide: HttpServiceService, useClass: HttpServiceService }],
+  providers: [{ provide: SilentLogger, useValue: SilentLogger }]
+  // providers: [{provide: APP_CONFIG, useValue: HERO_DI_CONFIG}],
+  // providers: [{provide: HTTP_SERVICE, useExisting: HttpServiceService}]
+
 })
 export class FirstComponentComponent implements OnInit {
   @ViewChildren("templateRef") contentChild;
@@ -14,7 +30,15 @@ export class FirstComponentComponent implements OnInit {
   @Input() templateAsArgument: TemplateRef<any>;
   @Output() dataToParent: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  constructor(
+    // private httpService: HttpServiceService,
+    @Inject(SilentLogger) logger: any
+    // @Inject(APP_CONFIG) config: any
+    // @Inject(HTTP_SERVICE) httpService: HttpServiceService
+  ) {
+    console.log(logger);
+    // console.log(config)
+   }
 
   ngOnChanges(changes: SimpleChange) {
     console.log("first component ngOnChanges", changes)
@@ -28,6 +52,10 @@ export class FirstComponentComponent implements OnInit {
   ngOnInit() {
     console.log("first component ngOnInit")
     this.dataToParent.emit("data from child");
+  }
+
+  printCount() {
+    // console.log(this.httpService.returnCount());
   }
 
 }
