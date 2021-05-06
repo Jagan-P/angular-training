@@ -1,5 +1,6 @@
 import { Component, OnInit, Directive, Input, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormControl, Validators, NG_VALIDATORS, Validator, AbstractControl, ValidationErrors, MinLengthValidator } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -13,7 +14,14 @@ export class ReactiveFormsComponent implements OnInit {
     number: new FormControl('',[Validators.required], [this.asyncValidator.bind(this)]),
   });
   checkForCharacter = "@";
-  constructor(private changeDetRef: ChangeDetectorRef) { }
+  constructor(private changeDetRef: ChangeDetectorRef,
+    private router: Router,
+    private route: ActivatedRoute
+    ) {
+      console.log(this.router);
+      console.log(this.route)
+      this.router.navigateByUrl("/rxjs-playground");
+     }
 
   ngOnInit() {
     console.log(this.profileForm)

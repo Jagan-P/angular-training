@@ -7,22 +7,28 @@ import { HttpServiceService } from '../http-service.service';
 import { InjectionToken } from '@angular/core';
 
 import {HERO_DI_CONFIG, SilentLogger} from './app.config'
+import { HeroService } from '../hero.service';
 
 export const APP_CONFIG = new InjectionToken<any>('app.config');
 
 export const HTTP_SERVICE = new InjectionToken<any>('./http-service.service');
 
+export const HERO_SERVICE = new InjectionToken<any>('tada');
 
+const heroServiceFactory = () => {
+  return new HeroService(false);
+};
 
 @Component({
   selector: 'app-first-component',
   templateUrl: './first-component.component.html',
   styleUrls: ['./first-component.component.scss'],
   // providers: [{ provide: HttpServiceService, useClass: HttpServiceService }],
-  providers: [{ provide: SilentLogger, useValue: SilentLogger }]
+  // providers: [{ provide: SilentLogger, useValue: SilentLogger }]
   // providers: [{provide: APP_CONFIG, useValue: HERO_DI_CONFIG}],
   // providers: [{provide: HTTP_SERVICE, useExisting: HttpServiceService}]
-
+  // providers: [{provide: HTTP_SERVICE, useClass: HttpServiceService}]
+  providers: [{provide: HERO_SERVICE, useFactory: heroServiceFactory}]
 })
 export class FirstComponentComponent implements OnInit {
   @ViewChildren("templateRef") contentChild;
@@ -30,14 +36,20 @@ export class FirstComponentComponent implements OnInit {
   @Input() templateAsArgument: TemplateRef<any>;
   @Output() dataToParent: EventEmitter<any> = new EventEmitter();
 
+  private httpService;
+  private heroService;
   constructor(
     // private httpService: HttpServiceService,
-    @Inject(SilentLogger) logger: any
+    // @Inject(SilentLogger) logger: any
     // @Inject(APP_CONFIG) config: any
     // @Inject(HTTP_SERVICE) httpService: HttpServiceService
+    @Inject(HERO_SERVICE) heroService: HeroService
   ) {
-    console.log(logger);
+    // console.log(logger);
     // console.log(config)
+    // this.httpService = httpService;
+    this.heroService=heroService;
+    console.log(this.heroService.getHeroes());
    }
 
   ngOnChanges(changes: SimpleChange) {

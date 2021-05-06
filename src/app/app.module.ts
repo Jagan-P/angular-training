@@ -12,7 +12,9 @@ import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.componen
 import { RxjsPlaygroundComponent } from './rxjs-playground/rxjs-playground.component';
 import { HttpClientComponent } from './http-client/http-client.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpServiceService } from './http-service.service';
+import { CanActivateTemplateDrivenForms, HttpServiceService } from './http-service.service';
+import { ChildrenOneComponent } from './children-one/children-one.component';
+import { ChildrenTwoComponent } from './children-two/children-two.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { HttpServiceService } from './http-service.service';
     ReactiveFormsComponent,
     ForbiddenValidatorDirective,
     RxjsPlaygroundComponent,
-    HttpClientComponent
+    HttpClientComponent,
+    ChildrenOneComponent,
+    ChildrenTwoComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,7 @@ import { HttpServiceService } from './http-service.service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [CanActivateTemplateDrivenForms],
   bootstrap: [AppComponent],
   entryComponents: [FirstComponentComponent]
 })
