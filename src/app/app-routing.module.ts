@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { ChildrenOneComponent } from './children-one/children-one.component';
 import { ChildrenTwoComponent } from './children-two/children-two.component';
 import { HttpClientComponent } from './http-client/http-client.component';
@@ -17,11 +17,14 @@ const routes: Routes = [
   {path: 'users', children: [
     {path: 'children-1', component: ChildrenOneComponent, canActivate:[CanActivateTemplateDrivenForms]},
     {path: 'children-2', component: ChildrenTwoComponent}
-  ]}
+  ]},
+  {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{
+    preloadingStrategy: PreloadAllModules
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

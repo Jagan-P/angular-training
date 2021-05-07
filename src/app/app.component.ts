@@ -88,12 +88,15 @@ export class AppComponent implements OnInit {
     {name:"ghi", canFly: false}
   ];
   data: any;
+  count=0;
 
   constructor(
     private changeDetRef: ChangeDetectorRef,
     private componentFactoryResolver: ComponentFactoryResolver
     ) {
     this.data = new DEF();
+    let abc = `Hello world ${this.count}`
+    console.log(abc);
   }
   
 

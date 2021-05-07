@@ -15,6 +15,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { CanActivateTemplateDrivenForms, HttpServiceService } from './http-service.service';
 import { ChildrenOneComponent } from './children-one/children-one.component';
 import { ChildrenTwoComponent } from './children-two/children-two.component';
+import { Router } from '@angular/router';
+import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
+import { AdminModule } from './admin/admin.module';
+import { UsersModule } from './users/users.module';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -39,9 +44,11 @@ import { ChildrenTwoComponent } from './children-two/children-two.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    // AdminModule,
+    // UsersModule
   ],
-  providers: [CanActivateTemplateDrivenForms],
+  providers: [{provide: CanActivateTemplateDrivenForms, useClass: CanActivateTemplateDrivenForms, deps: [Router]}],
   bootstrap: [AppComponent],
   entryComponents: [FirstComponentComponent]
 })

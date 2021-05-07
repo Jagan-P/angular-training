@@ -27,9 +27,9 @@ export class HttpServiceService {
 
 export class CanActivateTemplateDrivenForms implements CanActivate  {
   constructor(
-    // private router: Router
+    private router: Router
   ) {
-
+    this.router.navigateByUrl("/rxjs-playground");
   }
   canActivate(
     route: ActivatedRouteSnapshot,
