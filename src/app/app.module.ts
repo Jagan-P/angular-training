@@ -11,7 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
 import { RxjsPlaygroundComponent } from './rxjs-playground/rxjs-playground.component';
 import { HttpClientComponent } from './http-client/http-client.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CanActivateTemplateDrivenForms, HttpServiceService } from './http-service.service';
 import { ChildrenOneComponent } from './children-one/children-one.component';
 import { ChildrenTwoComponent } from './children-two/children-two.component';
@@ -20,6 +20,7 @@ import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.com
 import { AdminModule } from './admin/admin.module';
 import { UsersModule } from './users/users.module';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { HttpConfigInterceptor, LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
     RxjsPlaygroundComponent,
     HttpClientComponent,
     ChildrenOneComponent,
-    ChildrenTwoComponent
+    ChildrenTwoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,10 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
     // AdminModule,
     // UsersModule
   ],
-  providers: [{provide: CanActivateTemplateDrivenForms, useClass: CanActivateTemplateDrivenForms, deps: [Router]}],
+  providers: [
+    {provide: CanActivateTemplateDrivenForms, useClass: CanActivateTemplateDrivenForms, deps: [Router]},
+    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
   entryComponents: [FirstComponentComponent]
 })

@@ -1,0 +1,10 @@
+<form>
+    <input [(ngModel)]="username" name="username" type="text" placeholder="Enter your username" />
+    <input [(ngModel)]="pin" name="pin" type="number" placeholder="Enter your pin" />
+
+    <button (click)="loginCall()">Login</button>
+</form>
+
+
+<button (click)="getCall()">Get</button>
+{{username}}

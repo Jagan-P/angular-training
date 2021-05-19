@@ -4,12 +4,14 @@ import { ChildrenOneComponent } from './children-one/children-one.component';
 import { ChildrenTwoComponent } from './children-two/children-two.component';
 import { HttpClientComponent } from './http-client/http-client.component';
 import { CanActivateTemplateDrivenForms } from './http-service.service';
+import { LoginComponent } from './login/login.component';
 import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
 import { RxjsPlaygroundComponent } from './rxjs-playground/rxjs-playground.component';
 import { TemplateDrivenFormsComponent } from './template-driven-forms/template-driven-forms.component';
 
 
 const routes: Routes = [
+  {path: 'login', component: LoginComponent},
   {path: 'template-driven-forms', component: TemplateDrivenFormsComponent},
   {path: 'reactive-forms', component: ReactiveFormsComponent},
   {path: 'rxjs-playground', component: RxjsPlaygroundComponent},
