@@ -1,1 +1,17 @@
-<p>children-two works!</p>
+<form [formGroup]="addCatForm">
+    <input formControlName='name' type="text" placeholder="Enter a name" />
+    <input formControlName='age' type="number" placeholder="Enter the age" />
+    <button [disabled]="addCatForm.invalid" (click)="addCat()">Add cat</button>
+</form>
+
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+    </tr>
+    <tr *ngFor="let cat of catList | async">
+        <td>{{cat.name}}</td>
+        <td>{{cat.age}}</td>
+    </tr>
+</table>
