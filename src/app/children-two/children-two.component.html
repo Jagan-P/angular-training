@@ -5,13 +5,15 @@
 </form>
 
 
-<table>
+<table class="cats">
     <tr>
         <th>Name</th>
         <th>Age</th>
+        <th>Remove</th>
     </tr>
     <tr *ngFor="let cat of catList | async">
         <td>{{cat.name}}</td>
         <td>{{cat.age}}</td>
+        <td><button (click)="removeCat(cat._id)">Remove cat</button></td>
     </tr>
 </table>

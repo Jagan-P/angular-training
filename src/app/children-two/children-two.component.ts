@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -12,11 +12,12 @@ export class ChildrenTwoComponent implements OnInit {
   private catList;
   private addCatForm: FormGroup;
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private changeDetRef: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
-    this.catList = this.httpClient.get("http://localhost:3000/cats");
+    this.getCats();
 
     this.addCatForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
@@ -25,10 +26,24 @@ export class ChildrenTwoComponent implements OnInit {
 
   }
 
+  getCats() {
+    this.catList = this.httpClient.get("http://localhost:3000/cats");
+    this.changeDetRef.markForCheck();
+  }
+
+  removeCat(id) {
+    console.log(id);
+    this.httpClient.delete("http://localhost:3000/cats/"+id).subscribe((data)=>{
+      console.log(data);
+      this.getCats();
+    })
+  }
+
   addCat() {
     console.log(this.addCatForm.value);
     this.httpClient.post("http://localhost:3000/cats", this.addCatForm.value).subscribe((data)=>{
       console.log(data);
+      this.getCats();
     });
   }
 
